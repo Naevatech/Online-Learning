@@ -1,0 +1,57 @@
+<div className='container' style={{ border: "1px solid #808080" }}>
+                <div className='row'>
+
+                    <div className='col-4 col-sm-12' style={{ border: "1px solid rgb(166, 0, 0)" }}>
+
+                    </div>
+
+                    {/* form registration */}
+
+                    <div className='col-4 mt-5 col-sm-12' style={{ border: "1px solid rgb(70, 16, 177)" }}>
+                        <h1>Sign up here</h1>
+                        <div className="form-floating mb-3">
+                            <input type="Fullname" className="form-control" id="floatingInput" onChange={e => setfullName(e.target.value)} />
+                            <label for="floatingInput">Email address</label>
+                        </div>
+
+                        <div className="form-floating">
+                            <input type="password" className="form-control" id="floatingPassword" placeholder="Password" />
+                            <label for="floatingPassword">Password</label>
+                        </div>
+
+                        <div className="form-floating mb-3">
+                            <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" />
+                            <label for="floatingInput">Email address</label>
+                        </div>
+
+                        <div className="form-floating">
+                            <input type="password" className="form-control" id="floatingPassword" placeholder="Password" />
+                            <label for="floatingPassword">Password</label>
+                        </div>
+
+
+                        <div className='mt-2'>
+                            <h6 className="mb-2 pb-1">Gender: </h6>
+
+                            <div className="form-check form-check-inline">
+                                <input className="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
+                                    value="option1" checked />
+                                <label className="form-check-label" for="maleGender">male</label>
+                            </div>
+
+                            <div className="form-check form-check-inline">
+                                <input className="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
+                                    value="option1" checked />
+                                <label className="form-check-label" for="femaleGender">Female</label>
+                            </div>
+                        </div>
+
+                        <button onClick={getInfo()} className='btn btn-success'>Submit</button>
+
+                    </div>
+
+                    <div className='col-4 col-sm-12' style={{ border: "1px solid rgb(147, 177, 16)" }}>
+
+                    </div>
+                </div>
+            </div>
