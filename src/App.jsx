@@ -5,6 +5,7 @@ import Loginuser from './pages/Loginuser'
 import Signupuser from './pages/Signupuser'
 import { ToastContainer } from 'react-toastify'
 import SingleCourse from './pages/SingleCourse'
+import Create from './admin/Create'
 function App() {
   return (
     <div>
@@ -14,6 +15,7 @@ function App() {
         <Route path='/login' element={<Loginuser/>} />
         <Route path='/signup' element={<Signupuser/>} />
         <Route path='/courseview' element={<SingleCourse/>} />
+        <Route path="/create" element={<Create/>}></Route>
 
       </Routes>
     </div>

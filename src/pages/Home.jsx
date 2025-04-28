@@ -11,14 +11,14 @@ function Home() {
   return (
     <div>
 
-      <div className='container'>
-        {/* <div className="row">
+      {/* <div className='container'>
+        <div className="row">
           {
             userData ? userData.name[0] : navigate("/login")
           }
         </div> */}
 
-      </div>
+      {/* </div> */}
 
       {/* design start here */}
 
