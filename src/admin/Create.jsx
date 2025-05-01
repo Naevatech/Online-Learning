@@ -11,7 +11,7 @@ function Create() {
     const navigate = useNavigate()
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
-    const [courses, setCourses] = useState(false)
+    const [courses, setCourses] = useState([])
 
     const [courseID, setcourseID] = useState("")
     const [createModules, setcreateModules] = useState(false)
@@ -105,11 +105,14 @@ function Create() {
 
     }
 
-    const handleCreateModules = async () => {
+    const handleCreateModules = async (e) => {
+        e.preventDefault()
+        axios.defaults.withCredentials = true
         try {
-            const {data} = await axios.post(backendUrl, "/api/course/add", {courseID, topic, pictureThumbnail, url, duration})
+            const {data} = await axios.post(backendUrl + "/api/course/add", {courseID, topic, pictureThumbnail, url, duration})
             if (data.success) {
                 toast.success(data.message)
+                setcreateModules(false)
             }
             else {
                 toast.error(data.message)
@@ -133,7 +136,7 @@ function Create() {
 
                     <div className="col-md-4 col-6 col-sm-4" style={{ border: "2px solid rgb(132, 6, 6)" }}>
                         {courses.map((check, index) => (
-                            <div>
+                            <div key={index}>
                                 <p key={index} style={{ border: "1px solid #808080", padding: "10px", borderRadius: "5px" }}>{check.title}</p>
                                 <button onClick={() => handleCourse(check._id)}>Add modules</button>
                             </div>
