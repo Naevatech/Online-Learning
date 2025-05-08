@@ -3,3 +3,16 @@
 *{
   font-family: "DM Sans", sans-serif;
 }
+
+.sidebar {
+  color: white;
+}
+
+.signup-box {
+  border: 2px solid rgb(241, 241, 241);
+  padding: 30px;
+}
+
+.admin-signup-1 {
+  margin-top: 200px;
+}
