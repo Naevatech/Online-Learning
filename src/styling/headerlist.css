@@ -1,0 +1,12 @@
+.header {
+    width: 80vw;
+    height: 70px;
+    border: 1px solid rgb(232, 232, 232);
+}
+
+.header-list {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 30px 0 10px;
+    align-items: center;
+}

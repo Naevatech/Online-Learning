@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 import HeaderList from '../component/HeaderList'
 
-function Signup() {
-    const [name, setfullname] = useState("")
+function Login() {
     const [email, setemail] = useState("")
     const [password, setpassword] = useState("")
-    const [confirmPassword, setconfirmPassword] = useState("")
     return (
         <div className=''>
             <HeaderList />
@@ -20,12 +18,6 @@ function Signup() {
                             <div className="mx-auto" style={{marginBottom:"50px"}}>
                                 <h1 style={{textAlign:"center"}}>Join the tribe</h1>
                                 <p style={{textAlign:"center"}}>Are you read to take the next step towards a successful future? Look no further than Qwdrant!</p>
-                            </div>
-                            <div className="form-floating mb-3 mt-3">
-                                <input type="Fullname" className="form-control" id="floatingInput"
-                                    onChange={e => setfullname(e.target.value)}
-                                />
-                                <label for="floatingInput">Enter your Fullname</label>
                             </div>
 
                             <div className="form-floating mb-3">
@@ -44,14 +36,6 @@ function Signup() {
                                 <label for="floatingPassword">Password</label>
                             </div>
 
-                            <div className="form-floating mb-3">
-                                <input type="password" className="form-control" id="floatingconfirmPassword"
-                                    onChange={e => setconfirmPassword(e.target.value)}
-
-                                />
-                                <label for="floatingconfirmPassword">Re-enter password</label>
-                            </div>
-
                             <div className='d-grid gap-2 mx-auto'>
                                 <button className='btn btn-outline-primary btn-lg' type="submit">Sign up</button>
                             </div>
@@ -67,4 +51,4 @@ function Signup() {
     )
 }
 
-export default Signup
+export default Login

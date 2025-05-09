@@ -8,6 +8,13 @@ import SingleCourse from './pages/SingleCourse'
 import Create from './admin/Create'
 import Navbar from './component/Navbar'
 import Signup from './admin/Signup'
+import Login from './admin/Login'
+import Dashboard from './admin/Dashboard'
+import StudentList from './admin/StudentList'
+import CreateCours from './admin/CreateCours'
+import Course from './admin/Course'
+
+
 
 function App() {
   return (
@@ -23,6 +30,11 @@ function App() {
 
         {/* admin */}
         <Route path='/admin' element={<Signup/>}></Route>
+        <Route path='/admin-login' element={<Login/>}></Route>
+        <Route path='/dashboard' element={<Dashboard/>}></Route>
+        <Route path='/student' element={<StudentList/>}></Route>
+        <Route path='/create-course' element={<CreateCours/>}></Route>
+        <Route path='/courses' element={<Course/>}></Route>
 
       </Routes>
     </div>

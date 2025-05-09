@@ -1,0 +1,149 @@
+
+.dashboard-content {
+    width: 100%;
+    /* border: 2px solid gray; */
+    display: flex;
+    gap: 20px;
+}
+
+.dashboard-content .content {
+    width: 25%;
+    height: 200px;
+    border: 2px solid rgb(239, 239, 239);
+    border-radius: 10px;
+}
+
+.content-1 {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.content-all {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.student {
+    width: 40px;
+}
+
+.table tbody tr {
+    border-bottom: 10px solid transparent;
+    /* Adds spacing between rows */
+}
+
+.table tbody tr td,
+.table tbody tr th {
+    padding: 40px 0 0 0;
+}
+
+
+/* empty */
+.dashboard-empty {
+    width: 100%;
+    height: 60vh;
+    margin-top: 20px;
+    border: 2px solid rgb(240, 240, 240);
+    display: flex;
+    justify-content: center;
+}
+
+.dashboard-empty-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    
+    
+}
+
+button {
+    background-color: #000000;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+/* create course */
+
+.create-course {
+    width: 100%;
+    height: 90vh;
+    /* border: 2px solid rgb(96, 96, 96); */
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.create-course-form {
+    background-color: white;
+    width: 35%;
+    height: 600px;
+    padding: 40px;
+    align-items: center;
+}
+
+
+
+
+
+@media screen and (max-width: 768px) {
+    .dashboard-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .dashboard-content .content {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .content-all {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .student {
+        width: 15%;
+        text-align: center;
+    }
+
+    .content-1 {
+        padding: 20px;
+    }
+
+    .content-1 h3 {
+        font-size: 14px;
+    }
+
+    .content-1 p {
+        font-size: 12px;
+    }
+
+
+    /* create course */
+    .create-course {
+        width: 100%;
+        /* border: 2px solid rgb(96, 96, 96); */
+        height: 80vh;
+        
+    }
+    .create-course-form {
+        width: 100%;
+        padding: 0px;
+    }
+
+}

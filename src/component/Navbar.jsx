@@ -1,14 +1,15 @@
-import React, { useState } from 'react'
-import { Layout, } from 'antd';
+import React, { useState } from 'react';
 import Logo from './Logo';
+import { Layout, } from 'antd';
 import MenuList from './MenuList';
 import HeaderList from './HeaderList';
 import { AppstoreOutlined} from '@ant-design/icons';
 import { Button } from "antd";
 
-const { Header, Sider} = Layout
+const { Header, Sider, Content} = Layout
 
-function Navbar() {
+
+function Navbar ({ children })   {
   const [collapsed, setcollapsed] = useState(false)
 
   return (
@@ -26,9 +27,15 @@ function Navbar() {
               onClick={()=>setcollapsed(!collapsed)}
               icon={<AppstoreOutlined/> }
             />
-          
-
           </Header>
+          <Content style={{
+              padding: 24,
+              margin: 0,
+              minHeight: 280,
+            }} 
+            >
+            { children }
+          </Content>
         </Layout>
 
       </Layout>
