@@ -5,6 +5,7 @@ import MenuList from './MenuList';
 import HeaderList from './HeaderList';
 import { AppstoreOutlined} from '@ant-design/icons';
 import { Button } from "antd";
+import '../styling/sidebar.css'
 
 const { Header, Sider, Content} = Layout
 
@@ -15,7 +16,7 @@ function Navbar ({ children })   {
   return (
     
       <Layout>
-        <Sider collapsed={collapsed} collapsible trigger={null} className='sidebar' style={{height:"100vh"}}>
+        <Sider  collapsed={collapsed} collapsible trigger={null} className='sidebar' id='' style={{height:"100vh"}}>
           <Logo />
           <MenuList />
         </Sider>

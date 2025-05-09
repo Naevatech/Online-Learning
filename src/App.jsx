@@ -13,6 +13,9 @@ import Dashboard from './admin/Dashboard'
 import StudentList from './admin/StudentList'
 import CreateCours from './admin/CreateCours'
 import Course from './admin/Course'
+import ModuleAdd from './admin/ModuleAdd'
+import SingleAdminCourse from './admin/SingleAdminCourse'
+
 
 
 
@@ -35,7 +38,8 @@ function App() {
         <Route path='/student' element={<StudentList/>}></Route>
         <Route path='/create-course' element={<CreateCours/>}></Route>
         <Route path='/courses' element={<Course/>}></Route>
-
+        <Route path='/module' element={<ModuleAdd/>}></Route>
+        <Route path='/single-course' element={<SingleAdminCourse/>}></Route>
       </Routes>
     </div>
   )

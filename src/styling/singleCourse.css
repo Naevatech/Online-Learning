@@ -1,0 +1,148 @@
+.adminCourse-header {
+    width: 100%;
+    height: 70px;
+    border-bottom: 1px solid rgb(232, 232, 232);
+    display: flex;
+    justify-content: space-between;
+    padding: 0 30px 0 10px;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.btn-back {
+    background-color: rgb(255, 255, 255);
+    color: #805de9
+}
+
+.btn-add {
+    background-color: #5928E6;
+}
+
+
+
+.adminCourse-all {
+    width: 100%;
+    height: 100vh;
+    /* border: 2px solid red; */
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.adminCourse-1 {
+    width: 40%;
+    height: 50vh;
+    /* border: 2px solid black; */
+}
+
+.adminCourse-2 {
+    width: 20%;
+    height: 50vh;
+    /* border: 2px solid black; */
+}
+
+.adminCourse-title {
+    font-weight: 600;
+    color: rgb(51, 51, 51);
+    font-size: 28pt;
+}
+
+.adminCourse-desc {
+    font-weight: 400;
+    color: rgb(105, 105, 105);
+    font-size: 12pt;
+}
+.adminCourse-all-section{
+    border: 1px solid rgb(228, 228, 228);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.adminCourse-section {
+    /* border: 2px solid red; */
+    display: flex;
+    gap: 15px;
+    justify-items: center;
+}
+
+.adminCourse-section h6 {
+    text-align: center;
+    margin-top: 5px;
+    color: #707070;
+}
+
+.adminCourse-icon{
+    color: #707070;
+    font-size: 12pt;
+}
+
+
+/* section two */
+
+.adminCourse-section-all {
+    border: 1px solid rgb(234, 234, 234);
+    padding: 10px;
+}
+.adminCourse-img{
+    width: 320px;
+    height: 200px;
+    object-fit: cover;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+span {
+    font-size: 10pt;
+    color: #707070;
+}
+
+@media screen and (max-width: 768px) {
+    .adminCourse-all {
+        width: 100%;
+        /* height: 50vh; */
+        /* border: 2px solid red; */
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        justify-content: center;
+    }
+    
+    .adminCourse-1 {
+        width: 100%;
+        height: 60vh;
+        border: 2px solid black;
+    }
+    
+    .adminCourse-2 {
+        width: 100%;
+        height: 60vh;
+        border: 2px solid black;
+    }
+
+    .adminCourse-title {
+        font-weight: 600;
+        color: rgb(51, 51, 51);
+        font-size: 18pt;
+    }
+    
+    .adminCourse-desc {
+        font-weight: 400;
+        color: rgb(105, 105, 105);
+        font-size: 10pt;
+    }
+
+    .adminCourse-img{
+        width: 350px;
+        height: 200px;
+        object-fit: cover;
+    }
+}

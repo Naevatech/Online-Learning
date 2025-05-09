@@ -1,0 +1,129 @@
+.course-all {
+    width: 100%;
+    height: 90vh;
+    /* border: 2px solid rgb(96, 96, 96); */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    
+}
+
+.course-1 {
+    width: 55%;
+    height: 265px;
+    border: 2px solid rgb(237, 237, 237);
+    display: flex;
+    gap: 20px;
+    padding: 20px
+    /* margin: 10px 0 0 0; */
+}
+
+.course-img {
+    width: 400px;
+    height: 225px;
+    object-fit: cover;
+}
+
+.btn-option{
+    height: 42px;
+    width: 140px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    font-size: 10pt;
+}
+
+.btn-option:nth-child(3){
+    background-color: #EAEAEA;
+    color: #8F8F8F
+    /* text-align: center;
+    font-size: 10pt; */
+}
+
+.btn-option:nth-child(2){
+    background-color: #ffffff;
+    border: 1px solid #600fcb9e;
+    color: #600fcba1
+    /* text-align: center;
+    font-size: 10pt; */
+}
+
+.btn-option:nth-child(1){
+    background-color: #610fcb;
+    border: 1px solid;
+    color: #dec9ff
+    /* text-align: center;
+    font-size: 10pt; */
+}
+
+.course-title {
+    font-weight: 700;
+    font-size: 24pt
+}
+.course-desc {
+    font-weight: 500;
+    color: rgb(96, 96, 96);
+    margin-bottom: 20px;
+}
+
+/* Module Add */
+
+.btn-module{
+    height: 42px;
+    width: 140px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    font-size: 10pt;
+}
+
+.btn-module:nth-child(1){
+    background-color: #EAEAEA;
+    color: #8F8F8F
+    /* text-align: center;
+    font-size: 10pt; */
+}
+
+
+@media screen and (max-width: 768px) {
+    .course-all {
+        width: 100%;
+        /* height: 150vh; */
+        
+        
+    }
+    .course-1 {
+        width: 100%;
+        height: 460px;
+        border-bottom: 2px solid rgb(238, 238, 238);
+        display: flex;
+        flex-direction: column;
+        padding: 0px
+    }
+
+    .course-img{
+        width: 355px;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .btn-option{
+        height: 35px;
+        width: 110px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        font-size: 8pt;
+        margin-top: 10px;
+    }
+
+    .course-title {
+        
+        font-weight: 700;
+    }
+    .course-desc {
+        font-weight: 400;
+        color: rgb(96, 96, 96);
+    }
+
+}
