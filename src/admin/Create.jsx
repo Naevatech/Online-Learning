@@ -66,7 +66,7 @@ function Create() {
 
     // TO BASE 64
     const convertBase64 = (file) => {
-        return new Promise((resolve, reject)=> {
+        return new Promise((resolve, reject) => {
             const fileReader = new FileReader()
             fileReader.readAsDataURL(file);
 
@@ -81,22 +81,23 @@ function Create() {
     }
 
     //upload to cloudinary
-    const uploadImage = async (e) => {
+    const uploadImages = async (e) => {
         const file = e.target.files[0]
         const base64 = await convertBase64(file)
+        console.log(base64)
         // setloading("I'm loading")
-        axios.post("http://localhost:4000/api/course/uploadImage", {image:base64})
-        .then((res)=> {
-            if (res.data) {
-                toast.success("Image uploaded successfully")
-                setpictureThumbnail(res.data)
-                console.log(res.data)
-            }
-            else{
-                toast.error("Error!, kindly upload again")
-            }
-        })
-        .catch(console.log)
+        axios.post("http://localhost:4000/api/course/uploadImage", { image: base64 })
+            .then((res) => {
+                if (res.data) {
+                    toast.success("Image uploaded successfully")
+                    setpictureThumbnail(res.data)
+                    console.log(res.data)
+                }
+                else {
+                    toast.error("Error!, kindly upload again")
+                }
+            })
+            .catch(console.log(error))
     }
 
     const handleCourse = (id) => {
@@ -109,7 +110,7 @@ function Create() {
         e.preventDefault()
         axios.defaults.withCredentials = true
         try {
-            const {data} = await axios.post(backendUrl + "/api/course/add", {courseID, topic, pictureThumbnail, url, duration})
+            const { data } = await axios.post(backendUrl + "/api/course/add", { courseID, topic, pictureThumbnail, url, duration })
             if (data.success) {
                 toast.success(data.message)
                 setcreateModules(false)
@@ -121,6 +122,7 @@ function Create() {
             console.log(error)
         }
     }
+
 
 
     return (
@@ -164,7 +166,7 @@ function Create() {
                                     </div>
 
                                     <div class="input-group mb-3">
-                                        <input type="file" class="form-control" id="DropIMG" onChange={uploadImage} />
+                                        <input type="file" class="form-control" id="DropIMG" onChange={uploadImages} />
                                         <label class="input-group-text" for="inputGroupFile02">Upload</label>
                                     </div>
 
@@ -226,6 +228,20 @@ function Create() {
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="accordion accordion-flush" id="accordionFlushExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            Accordion Item #1
+                        </button>
+                    </h2>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item’s accordion body.</div>
+                    </div>
+                </div>
+                
             </div>
         </div>
     )

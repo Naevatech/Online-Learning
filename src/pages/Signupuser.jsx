@@ -7,7 +7,7 @@ import { toast } from 'react-toastify'
 
 function Signupuser() {
     const navigate = useNavigate()
-    const {backendUrl, setisLoggedin, getUserData} = useContext(AppContent)
+    const { backendUrl, setisLoggedin, getUserData } = useContext(AppContent)
 
     const [gender, setgender] = useState("")
     const [name, setfullname] = useState("")
@@ -15,34 +15,35 @@ function Signupuser() {
     const [username, setusername] = useState("")
     const [password, setpassword] = useState("")
     const [confirmPassword, setconfirmPassword] = useState("")
-    
-    
+
+
 
     const onOption = (e) => {
         setgender(e.target.value)
     }
 
-    const handleSubmit =  async(e) => {
+    const handleSubmit = async (e) => {
         try {
             e.preventDefault()
             axios.defaults.withCredentials = true
             if (password === confirmPassword) {
                 // alert("Incorrect password or email")
-                const {data} = await axios.post(backendUrl + '/api/auth/register', {name, email, username, password, gender})
+                const { data } = await axios.post(backendUrl + '/api/auth/register', { name, email, username, gender, password })
                 if (data.success) {
                     setisLoggedin(true)
                     getUserData()
-                    navigate("/")
-                    // toast.success("Successfully registered")
-                } else if(!data.message) {
-                    navigate("/")
+                    navigate("/login")
+                    toast.success("Successfully registered")
+                } else if (!data.message) {
+                    navigate("/signup")
+                    toast.error("Your password or email is incorrect")
                 }
                 else {
                     toast.error(data.message)
                 }
                 console.log(data)
             }
-            else{
+            else {
                 toast.error("Incorrect password")
             }
         } catch (error) {
@@ -53,87 +54,93 @@ function Signupuser() {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <div className='container' style={{ border: "1px solid rgb(166, 0, 0)", margintop: "150px" }}>
-                    <div className="row">
-                        <div className='col-md-4 col-sm-6' style={{ border: "1px solid rgb(150, 93, 93)", height: "20px" }}>
+            {/* Using a standard Bootstrap container-fluid or container */}
+            <div className='container min-vh-100 d-flex align-items-center justify-content-center py-5'>
+                <form onSubmit={handleSubmit} className="w-100">
+                    <div className="row justify-content-center">
+                        {/* col-11: small mobile
+                    col-sm-8: tablets
+                    col-md-6: small laptops
+                    col-lg-4: desktops 
+                */}
+                        <div className='col-11 col-sm-8 col-md-6 col-lg-4 shadow-sm p-4 rounded border'>
 
-                        </div>
-
-                        <div className='col-md-4 col-sm-6' style={{ border: "1px solid rgb(0, 0, 0)", }}>
-                            <div className="mx-auto" style={{ width: "250px", border: "1px solid rgb(0, 0, 0)" }}>
-                                <h1>Sign up here</h1>
+                            <div className="text-center mb-4">
+                                <h1 className="h3 fw-bold">Sign up here</h1>
+                                <p className="text-muted">Create your account to get started</p>
                             </div>
-                            <div className="form-floating mb-3 mt-3">
-                                <input type="Fullname" className="form-control" id="floatingInput"
+
+                            {/* Full Name */}
+                            <div className="form-floating mb-3">
+                                <input type="text" className="form-control" id="floatingInput" placeholder="John Doe"
                                     onChange={e => setfullname(e.target.value)}
                                 />
-                                <label for="floatingInput">Enter your Fullname</label>
+                                <label htmlFor="floatingInput">Full Name</label>
                             </div>
 
+                            {/* Email */}
                             <div className="form-floating mb-3">
-                                <input type="email" className="form-control" id="floatingEmail"
+                                <input type="email" className="form-control" id="floatingEmail" placeholder="name@example.com"
                                     onChange={e => setemail(e.target.value)}
-
                                 />
-                                <label for="floatingEmail">Enter your Email Address</label>
+                                <label htmlFor="floatingEmail">Email Address</label>
                             </div>
 
+                            {/* Username */}
                             <div className="form-floating mb-3">
-                                <input type="username" className="form-control" id="floatingUsername"
+                                <input type="text" className="form-control" id="floatingUsername" placeholder="username"
                                     onChange={e => setusername(e.target.value)}
-
                                 />
-                                <label for="floatingUsername">Enter your username</label>
+                                <label htmlFor="floatingUsername">Username</label>
                             </div>
 
+                            {/* Password */}
                             <div className="form-floating mb-3">
-                                <input type="password" className="form-control" id="floatingPassword"
+                                <input type="password" className="form-control" id="floatingPassword" placeholder="Password"
                                     onChange={e => setpassword(e.target.value)}
-
                                 />
-                                <label for="floatingPassword">Password</label>
+                                <label htmlFor="floatingPassword">Password</label>
                             </div>
 
+                            {/* Confirm Password */}
                             <div className="form-floating mb-3">
-                                <input type="password" className="form-control" id="floatingconfirmPassword"
+                                <input type="password" className="form-control" id="floatingconfirmPassword" placeholder="Confirm Password"
                                     onChange={e => setconfirmPassword(e.target.value)}
-
                                 />
-                                <label for="floatingconfirmPassword">Re-enter password</label>
+                                <label htmlFor="floatingconfirmPassword">Re-enter password</label>
                             </div>
 
-                            <div className='d-flex mb-3'>
-                                <h6 className="mb-2 pb-1 ">Gender: </h6>
+                            {/* Gender Selection */}
+                            <div className='mb-4'>
+                                <label className="form-label d-block text-muted small fw-bold">GENDER</label>
+                                <div className="d-flex gap-3">
+                                    <div className="form-check">
+                                        <input className="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
+                                            onChange={onOption}
+                                            value="Male"
+                                        />
+                                        <label className="form-check-label" htmlFor="maleGender">Male</label>
+                                    </div>
 
-                                <div className="form-check form-check-inline mx-3">
-                                    <input className="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender"
-                                        onChange={onOption}
-                                        value="Male"
-                                    />
-                                    <label className="form-check-label" for="maleGender">male</label>
+                                    <div className="form-check">
+                                        <input className="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
+                                            onChange={onOption}
+                                            value="Female"
+                                        />
+                                        <label className="form-check-label" htmlFor="femaleGender">Female</label>
+                                    </div>
                                 </div>
-
-                                <div className="form-check form-check-inline">
-                                    <input className="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender"
-                                        onChange={onOption}
-                                        value="Female"
-                                    />
-                                    <label className="form-check-label" for="femaleGender">Female</label>
-                                </div>
                             </div>
 
-                            <div className='d-grid gap-2 mx-auto'>
-                                <button className='btn btn-outline-primary' type="submit">Sign up</button>
+                            {/* Submit Button */}
+                            <div className='d-grid'>
+                                <button className='btn btn-primary btn-lg' type="submit">Sign up</button>
                             </div>
-                        </div>
-
-                        <div className='col-md-4 col-sm-6' style={{ border: "1px solid rgb(222, 149, 13)", height: "20px" }}>
 
                         </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     )
 }

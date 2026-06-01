@@ -4,9 +4,9 @@ import '../styling/headerlist.css'
 function HeaderList() {
     return (
         <div className='header'>
-            <div className='header-list'>
+            <div className='header-list '>
                 <div>
-                    <img src="./public/qwdrant.png" style={{
+                    <img src="./qwdrant.png" style={{
                         width: "140px",
                         margin: "20px",
                         color:"red"

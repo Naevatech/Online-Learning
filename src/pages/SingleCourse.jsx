@@ -1,45 +1,79 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import Header from './Header'
+import Footer from './footer'
+import { Link, useNavigate } from 'react-router-dom'
+import { AppContent } from '../context/AppContext'
 
 function SingleCourse() {
+    const { backendUrl, userData, } = useContext(AppContent)
+    const [courses, setCourses] = useState([])
+    const [userID, setUserID] = useState("")
+    const navigate = useNavigate()
+
+    const allCourse = async () => {
+        try {
+            const response = await fetch(backendUrl + "/api/user/enrolledCourses", {
+                method: 'GET',
+                // CRITICAL: This allows the browser to send the cookie
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                setCourses(data.courses);
+            } else {
+                console.log(data.message);
+            }
+        } catch (error) {
+            console.log("Fetch error:", error);
+        }
+    };
+
+    useEffect(() => {
+        allCourse()
+        console.log("courses:", courses)
+        setUserID(userData._id)
+    }, [userData])
     return (
         <div>
-            <div className='container'>
-                <div className="d-flex gap-2 col" style={{ flexWrap: "wrap" }}>
-                    <div className='col-md-6 col-sm-6 col-12 p-1' style={{ border: "1px solid  rgb(220, 220, 220)", borderRadius: "10px" }}>
-                        <img src="/af.jpg" className='mb-3' alt="" srcset="" style={{ width: "640px", borderRadius: "10px", justifyContent: "center" }} />
-                        <h1 className='fs-5'>Beginners Guide to HTML</h1>
-                        <p className='fs-6'>JavaScript is a powerful and dynamic language that is fundamental to modern web development and has expanded its reach far beyond the browser. It allows you to add interactivity, handle user actions, and create dynamic content on websites. As you begin your journey with JavaScript, you'll learn about its core concepts and how to use it to bring web pages to life and even build entire applications. Get ready to explore and have fun coding!</p>
-                        <div className="d-flex" >
-                            <button className='btn btn-outline-primary btn-sm'>Buy Course</button>
-                        </div>
-                    </div>
+            <Header />
+            <section className="container py-5 mt-5">
+                <div className="row g-4">
+                    {courses.map((data, index) => (
+                        <div className="col-12 col-sm-6 col-md-4 col-xl-3" key={index}>
+                            <div className="card h-100 border-0 shadow-sm transition-hover">
+                                <img
+                                    className="card-img-top"
+                                    src="../public/side-view-singer-working-studio.jpg"
+                                    alt={data.courseData.title}
+                                    style={{ height: '180px', objectFit: 'cover' }}
+                                />
+                                <div className="card-body d-flex flex-column">
+                                    <h5 className="card-title fw-bold text-dark">{data.courseData.title}</h5>
+                                    <p className="card-text text-muted small flex-grow-1">
+                                        {data.courseData.description}
+                                    </p>
 
-                    <div className='col-md-3 col-sm-6 col-12 p-3' style={{ border: "1px solid  rgb(220, 220, 220)", borderRadius: "10px" }}>
-                        <div>
-                            <table className='table'>
-                                <thead>
-                                    <tr>
-                                        <th>Course Content</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1. Introduction to programming</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2. Data types</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3. Function and Parameters</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                    <div className="d-flex align-items-center justify-content-between border-top pt-3 mt-3">
+                                        <Link
+                                            to={`/learning/${data.courseData._id}`}
+                                            className="btn btn-sm text-white px-3 border-0"
+                                            style={{ background: 'linear-gradient(to right, #2563eb, #9333ea)' }}
+                                        >
+                                            Start Learning
+                                        </Link>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        
-                    </div>
-
+                    ))}
                 </div>
-            </div>
+            </section>
+            <Footer />
         </div>
     )
 }
