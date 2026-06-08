@@ -30,7 +30,6 @@ function Homepage() {
         // console.log(courses)
         console.log("courses:", userData._id)
         setUserID(userData._id)
-        // console.log("Number of courses:", courses.length)
     }, [userData])
 
 

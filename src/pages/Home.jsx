@@ -70,17 +70,6 @@ function Home() {
   return (
 
     <div>
-
-      {/* <div className='container'>
-        <div className="row">
-          {
-            userData ? userData.name[0] : navigate("/login")
-          }
-        </div> */}
-
-      {/* </div> */}
-
-      {/* design start here */}
       <div className="container">
         <div className="col-md-6" style={{ border: "2px solid red", height: "300px" }}>
           <ReactPlayer url={videoDisplay} light="https://res.cloudinary.com/upload-xyz/image/upload/v1746132694/t089eqrc1tchir47mxwf.jpg"></ReactPlayer>

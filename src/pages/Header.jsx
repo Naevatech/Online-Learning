@@ -64,9 +64,9 @@ function Header() {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     {/* Center Navigation Links */}
                     <ul className="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-3">
-                        <li className="nav-item">
+                        {/* <li className="nav-item">
                             <a className="nav-link text-dark" href="#categories">Categories</a>
-                        </li>
+                        </li> */}
                         <li className="nav-item">
                             <Link to={"/courseview"}><a className="nav-link text-dark" href="#courses">  Courses</a></Link>
                         </li>

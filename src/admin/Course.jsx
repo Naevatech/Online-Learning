@@ -61,7 +61,7 @@ function Course() {
         const base64 = await convertBase64(file)
         console.log(base64)
         // setloading("I'm loading")
-        axios.post("http://localhost:4000/api/course/uploadImage", { image: base64 })
+        axios.post(backendUrl + "/api/course/uploadImage", { image: base64 })
             .then((res) => {
                 if (res.data) {
                     toast.success("Image uploaded successfully")
