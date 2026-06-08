@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import Header from './Header'
-import Footer from './footer'
+import Footer from './Footer'
 import { AppContent } from '../context/AppContext'
 import { useContext, useEffect } from 'react'
 import { useParams } from 'react-router-dom'

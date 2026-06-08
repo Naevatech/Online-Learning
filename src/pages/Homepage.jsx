@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Header from './Header'
-import Footer from './footer'
+import Footer from './Footer'
 import { AppContent } from '../context/AppContext'
 import { Link, useNavigate } from 'react-router-dom'
 

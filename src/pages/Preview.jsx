@@ -3,7 +3,7 @@ import Navbar from '../component/Navbar'
 import { useParams } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { AppContent } from "../context/AppContext";
-import Footer from "./footer";
+import Footer from "./Footer";
 import Header from "./Header";
 import CancelPayment from "../payment/CancelPayment";
 import SuccessPayment from "../payment/SuccessPayment";
