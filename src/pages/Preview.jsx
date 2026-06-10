@@ -151,7 +151,7 @@ function Preview() {
                         <div className="card shadow-sm sticky-lg-top" style={{ top: '20px' }}>
                             <img
                                 className="card-img-top"
-                                src="/side-view-singer-working-studio.jpg"
+                                src={courses?.pictureThumbnail}
                                 alt="Course Preview"
                             />
                             <div className="card-body">

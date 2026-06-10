@@ -103,7 +103,7 @@ function Homepage() {
                                 <div className="card h-100 border-0 shadow-sm transition-hover">
                                     <img
                                         className="card-img-top"
-                                        src="../public/side-view-singer-working-studio.jpg"
+                                        src={data.pictureThumbnail}
                                         alt={data.title}
                                         style={{ height: '180px', objectFit: 'cover' }}
                                     />

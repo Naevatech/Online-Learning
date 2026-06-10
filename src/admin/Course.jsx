@@ -108,7 +108,7 @@ function Course() {
                         <div className='col-sm-4'>
 
                             <div className="card mb-3" key={index}>
-                                <img className='card-img-top' src="../public/side-view-singer-working-studio.jpg" alt="" srcset="" />
+                                <img className='card-img-top' src={check.pictureThumbnail} alt="" srcset="" />
                                 <div className="card-body">
                                     <h5 className="card-title">{check.title}</h5>
                                     <p className="card-text">{check.description}</p>
