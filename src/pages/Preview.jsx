@@ -43,7 +43,7 @@ function Preview() {
                 // Pass the dynamic data here
                 body: JSON.stringify({
                     name: courses?.title, // You can use variables from state/params here
-                    amount: 50, // Amount in Dollars
+                    amount: courses?.price, // Amount in Dollars
                     courseId: _id, // Pass the course ID for backend processing
                     userId: userID // Pass the user ID
                 }),

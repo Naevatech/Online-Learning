@@ -114,7 +114,7 @@ function Homepage() {
                                         </p>
 
                                         <div className="d-flex align-items-center justify-content-between border-top pt-3 mt-3">
-                                            <span className="fs-5 fw-bold text-dark">$99.99</span>
+                                            <span className="fs-5 fw-bold text-dark">${data.price?.toFixed(2)}</span>
                                             <Link
                                                 to={`/preview-course/${data._id}`}
                                                 className="btn btn-sm text-white px-3 border-0"

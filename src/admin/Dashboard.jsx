@@ -19,6 +19,7 @@ function Dashboard() {
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const [pictureThumbnail, setpictureThumbnail] = useState("")
+    const [price, setPrice] = useState("")
     const [loading, setLoading] = useState(false);
 
 
@@ -37,12 +38,16 @@ function Dashboard() {
             return toast.error("Course thumbnail is required");
         }
 
+        if (!price?.trim() || isNaN(price) || Number(price) <= 0) {
+            return toast.error("Valid course price is required");
+        }
+
         setLoading(true);
 
         try {
             const { data } = await axios.post(
                 `${backendUrl}/api/course/create`,
-                { title, description, pictureThumbnail },
+                { title, description, pictureThumbnail, price },
                 { withCredentials: true }
             );
 
@@ -124,7 +129,8 @@ function Dashboard() {
     const isFormValid =
         title?.trim() &&
         description?.trim() &&
-        pictureThumbnail;
+        pictureThumbnail &&
+        price?.trim() && !isNaN(price) && Number(price) > 0;
 
 
     return (
@@ -188,6 +194,18 @@ function Dashboard() {
                                             onChange={uploadImages}
                                         />
                                         <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                                    </div>
+                                    //price input
+                                    <div className="form-floating mb-3">
+                                        <input
+                                            type="number"
+                                            className="form-control"
+                                            id="floatingPrice"
+                                            value={price}
+                                            onChange={(e) => setPrice(e.target.value)}
+                                            placeholder="Enter course price"
+                                        />
+                                        <label for="floatingPrice">Course Price</label>
                                     </div>
                                     <div className='d-grid gap-2 mx-auto'>
                                         <button
