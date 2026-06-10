@@ -8,10 +8,8 @@ import { useNavigate } from "react-router-dom";
 export const AppContent = createContext()
 export const AppContextProvider = (props) => {
     const localBackendUrl = (import.meta.env.VITE_BACKEND_URL || "").trim().replace(/\/$/, "")
-    const productionBackendUrl = (import.meta.env.VITE_BACKEND_URL_PROD || "https://online-learning-beige.vercel.app").trim().replace(/\/$/, "")
-    const backendUrl = import.meta.env.PROD && (!localBackendUrl || localBackendUrl.includes("localhost") || localBackendUrl.includes("127.0.0.1"))
-        ? productionBackendUrl
-        : localBackendUrl
+    const productionBackendUrl = (import.meta.env.VITE_BACKEND_URL_PROD || "").trim().replace(/\/$/, "")
+    const backendUrl = import.meta.env.PROD ? productionBackendUrl : localBackendUrl
     const [isLoggedin, setisLoggedin] = useState(false)
     const [userData, setuserData] = useState(false)
     const [course, setCourse] = useState({})
