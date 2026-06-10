@@ -18,66 +18,113 @@ function Dashboard() {
     const navigate = useNavigate()
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
+    const [pictureThumbnail, setpictureThumbnail] = useState("")
+    const [loading, setLoading] = useState(false);
+
 
     const handleCreateCourse = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
-        axios.defaults.withCredentials = true
+        if (!title?.trim()) {
+            return toast.error("Course title is required");
+        }
+
+        if (!description?.trim()) {
+            return toast.error("Course description is required");
+        }
+
+        if (!pictureThumbnail) {
+            return toast.error("Course thumbnail is required");
+        }
+
+        setLoading(true);
+
         try {
-            const { data } = await axios.post(backendUrl + "/api/course/create", { title, description })
+            const { data } = await axios.post(
+                `${backendUrl}/api/course/create`,
+                { title, description, pictureThumbnail },
+                { withCredentials: true }
+            );
+
             if (data.success) {
-                toast.success(data.message)
-                navigate("/courses")
+                toast.success(data.message);
+                navigate("/courses");
+            } else {
+                toast.error(data.message);
             }
-            else {
+        } catch (error) {
+            toast.error(error.response?.data?.message || error.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // TO BASE 64
+    const convertBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const fileReader = new FileReader()
+            fileReader.readAsDataURL(file);
+
+            fileReader.onload = () => {
+                resolve(fileReader.result);
+            }
+
+            fileReader.onerror = (error) => {
+                reject(error)
+            }
+        })
+    }
+
+    //upload to cloudinary
+    const uploadImages = async (e) => {
+        const file = e.target.files[0]
+        const base64 = await convertBase64(file)
+        console.log(base64)
+        // setloading("I'm loading")
+        axios.post(backendUrl + "/api/course/uploadImage", { image: base64 })
+            .then((res) => {
+                if (res.data) {
+                    toast.success("Image uploaded successfully")
+                    setpictureThumbnail(res.data)
+                    console.log(res.data)
+                }
+                else {
+                    toast.error("Error!, kindly upload again")
+                }
+            })
+            .catch(console.log(error))
+    }
+
+
+    const allCourse = async () => {
+        try {
+            const { data } = await axios.get(
+                backendUrl + "/api/course/allCourse",
+                { withCredentials: true }
+            )
+
+            console.log("Courses API:", data)
+
+            if (data.success) {
+                setCourses(data.course)
+            } else {
                 toast.error(data.message)
             }
 
         } catch (error) {
             console.log(error)
+            toast.error("Failed to load courses")
         }
     }
-
-    // const allCourse = async (e) => {
-    //     try {
-    //         await fetch(backendUrl + "api/course/allCourse", {
-    //             credentials: "include"
-    //         })
-    //             .then(res => res.json())
-    //             .then(json => setCourses(json.course))
-    //         console.log(courses)
-    //         console.log(courses.length)
-
-    //     } catch (error) {
-    //         console.log(error)
-
-    //     }
-    // }
-
-    const allCourse = async () => {
-    try {
-        const { data } = await axios.get(
-            backendUrl + "/api/course/allCourse",
-            { withCredentials: true }
-        )
-
-        console.log("Courses API:", data)
-
-        if (data.success) {
-            setCourses(data.course)
-        } else {
-            toast.error(data.message)
-        }
-
-    } catch (error) {
-        console.log(error)
-        toast.error("Failed to load courses")
-    }
-}
 
     useEffect(() => {
         console.log("Updated courses:", courses)
     }, [courses])
+
+    const isFormValid =
+        title?.trim() &&
+        description?.trim() &&
+        pictureThumbnail;
 
 
     return (
@@ -112,21 +159,44 @@ function Dashboard() {
                                 {/* CREATE COURSE FORM */}
                                 <form onSubmit={handleCreateCourse}>
                                     <div className="form-floating mb-3 mt-3">
-                                        <input type="input" className="form-control" id="floatingInput"
-                                            onChange={e => setTitle(e.target.value)}
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            id="floatingInput"
+                                            value={title}
+                                            onChange={(e) => setTitle(e.target.value)}
                                         />
                                         <label for="floatingInput">Course title</label>
                                     </div>
 
                                     <div className="form-floating mb-3">
-                                        <textarea type="input" className="form-control" id="floatingdesc"
-                                            onChange={e => setDescription(e.target.value)}
+
+                                        <textarea
+                                            className="form-control"
+                                            id="floatingdesc"
+                                            value={description}
+                                            onChange={(e) => setDescription(e.target.value)}
                                         />
                                         <label for="floatingdesc">Describe the course</label>
                                     </div>
+                                    {/* course cover image upload will be added here */}
+                                    <div class="input-group mb-3">
+                                        <input
+                                            type="file"
+                                            className="form-control"
+                                            id="DropIMG"
+                                            onChange={uploadImages}
+                                        />
+                                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                                    </div>
                                     <div className='d-grid gap-2 mx-auto'>
-                                        <button className='btn btn-outline-primary' type="submit" data-bs-dismiss="modal">Create Course</button>
-
+                                        <button
+                                            type="submit"
+                                            className="btn btn-outline-primary"
+                                            disabled={!isFormValid || loading}
+                                        >
+                                            {loading ? "Creating..." : "Create Course"}
+                                        </button>
                                     </div>
                                 </form>
                             </div>
